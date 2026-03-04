@@ -15,7 +15,7 @@ class ClaudeClient:
                 "ANTHROPIC_API_KEY is not set. Add it to your .env file."
             )
         self.client = anthropic.Anthropic(api_key=api_key)
-        self.model = os.getenv("CLAUDE_MODEL", "claude-3-5-sonnet-20241022")
+        self.model = os.getenv("CLAUDE_MODEL", "claude-3-haiku-20240307")
         self.max_tokens = int(os.getenv("CLAUDE_MAX_TOKENS", "1024"))
 
     def complete(self, system_prompt: str, user_prompt: str) -> str:
