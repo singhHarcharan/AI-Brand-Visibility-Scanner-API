@@ -3,9 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import logging
 import time
+import sys
+import os
 
-from models.schemas import ScanRequest, ScanResponse
-from services.analyzer import BrandAnalyzer
+# Add project root to Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from common.models.schemas import ScanRequest, ScanResponse
+from backend.services.analyzer import BrandAnalyzer
 
 load_dotenv()
 

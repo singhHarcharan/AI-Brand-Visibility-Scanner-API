@@ -1,9 +1,15 @@
 import json
 import logging
 import time
-from models.schemas import ScanRequest, ScanResponse, QueryResult
-from services.ollama_client import OllamaClient
-from utils.scoring import compute_visibility_score
+import sys
+import os
+
+# Add project root to Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+from common.models.schemas import ScanRequest, ScanResponse, QueryResult
+from backend.services.ollama_client import OllamaClient
+from common.utils.scoring import compute_visibility_score
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +36,7 @@ class BrandAnalyzer:
         logger.info(f"📊 Processing {len(request.queries)} queries for brand '{request.brand_name}'")
 
         for i, query in enumerate(request.queries, 1):
-            logger.info(f"🔍 [{i}/{len(request.queries)}] Analyzing query: '{query}'")
+            logger.info(f" [{i}/{len(request.queries)}] Analyzing query: '{query}'")
             query_start_time = time.time()
             
             user_prompt = (
